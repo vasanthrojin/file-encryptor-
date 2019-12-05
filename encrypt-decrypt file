@@ -1,0 +1,21 @@
+import pyAesCrypt
+import os
+
+def encryptFile(filename,password):
+    pyAesCrypt.encryptFile(filename,filename+".aes",password,64 * 1024)
+    os.remove(filename)
+def decryptFile(filename,password):
+    pyAesCrypt.decryptFile(filename+".aes",filename,password,64 * 1024)
+    os.remove(filename+".aes")
+
+#############---MAIN PROGRAM---#############
+x = input("Command")
+
+if x == "e":
+    FileName = input("Filename: ")
+    Password = input("password: ")
+    encryptFile(FileName,Password)
+elif x == "d":
+    FileName = input("Filename: ")
+    Password = input("password: ")
+    decryptFile(FileName,Password)
